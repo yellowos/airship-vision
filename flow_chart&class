@@ -1,0 +1,168 @@
+/*
+
+                           ┌─────────────────────────────┐
+                           │          area_lists         │
+                           ├─────────────────────────────┤
+                           │                             │
+                           │                             │
+                           │                             │
+                           │                             │
+                           │                             │
+                           │ +area_before: vector<area>  │
+                           │  +area_after: vector<area>  │
+                           │+area_pairs:vector<area_pair>│
+                      ┌───▶│                             │◀───┐
+                      │    │                             │    │
+                      │    │                             │    │
+                      │    │                             │    │
+                 area_pair │                             │    │
+                      │    └─────────────────────────────┘    │
+                      │                                       │
+                      │                                       ▼
+       ┌──────────────┴──────────────┐        ┌────────────────────────────────┐
+       │            area             │        │           area_pair            │
+       ├─────────────────────────────┤        ├────────────────────────────────┤
+       │+area_flag: int              │        │                                │
+       │+area_num: int               │        │       +area_before: int        │
+       │+area_size: size_t           │        │        +area_after: int        │
+       │+area_points: vector<Point>  │        │ +shape_similarity: double(0-1) │
+       │+area_location: Point        │        │ +color_similarity: double(0-1) │
+       │+area_LT: Point              │        │     +moving_vector: Point      │
+       │+area_RD: Point              │        │                                │
+       │+area_edge: vector<Point>    │        └────────────────────────────────┘
+       │+area_Mat: Mat               │
+       │+area_Mat_std: Mat(30*30)    │
+       │+area_R_ch: int              │
+       │+area_G_ch: int              │
+       │+area_B_ch: int              │
+       │+area_paired_flag: int       │
+       └─────────────────────────────┘
+                      ▲
+                      │
+                 area_proc
+                      │
+         ┏━━━━━━━━━━━━┻━━━━━━━━━━━━┓
+         ┃       image_flag        ┃
+         ┗━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                      ▲
+                      │
+                      │
+                      │
+                      │
+     ┌────────────────┴────────────────┐
+     │              image              │
+     ├─────────────────────────────────┤
+     │+image_src: Mat                  │
+     │+image_flag: Mat                 │
+     │+current_area: unsigned char     │                          ┏━━━━━━━━━━━━━━━━━━━┓
+     │+current_point: Point            │◀────────area_grow────────┃ source_image: Mat ┃
+     │+waiting_points: vector<Point>   │                          ┗━━━━━━━━━━━━━━━━━━━┛
+     │+area_size: vector<int>          │
+     │+processed: int                  │
+     └─────────────────────────────────┘
+
+
+
+
+
+
+
+
+  ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
+                      $ main $                   │                                          $ image_grow $
+  │                                                 │                                                                                             │
+                                                 │                        ┌─────────┐
+  │                                                 │                     │  start  │                                                             │
+                     ╔═════════╗                 │                        └────┬────┘
+  │                  ║  start  ║                    │                          │                                                                  │
+                     ╚════╦════╝                 │                             ▼
+  │                       │                         │   ┌─────────────────────────────────────────────┐ ┌─────────────────────────────────┐       │
+                          ▼                      │      │initialize                                   │ │              image              │
+  │     ┌────────────────────────────────────┐      │   │                                             │ ├─────────────────────────────────┤       │
+        │          # image divide #          │   │      │1. unprocessed image                         │ │+image_src: Mat                  │
+  │     │    1. get image and pre process    │      │   │ --> image_src                               │ │+image_flag: Mat                 │       │
+        │  2. using area grow to divide the  │   │      │2. the 0 with the shape of unprocessed image │ │+current_area: unsigned char     │
+  │     │                area                │      │   │ --> image_flag                              │ │+current_point: Point            │       │
+        └─────────────────┬──────────────────┘   │      │3. 0                                         │ │+waiting_points: vector<Point>   │
+  │                       │                         │   │ --> current_area                            │ │+area_size: vector<int>          │       │
+                          ▼                      │      │4. current_point(empty)                      │ │+processed: int                  │
+  │     ┌────────────────────────────────────┐      │   │5. waiting_points(empty)                     │ └─────────────────────────────────┘       │
+        │           # area pair #            │   │      │6. area_size(empty)                          │
+  │     │ 1. make area_after list and get it │      │   │7. 0                                         │                                           │
+        │characteristics, sort the list by it│   │      │ --> processed                               │
+  │     │                size                │      │   │                                             │                                           │
+        │2. make area_pair by the size of the│   │      └──────────────────────┬──────────────────────┘
+  │     │   area  and the its color, then    │      │                          │                                                                  │
+        │      calculate it similarity       │   │                             │
+  │     └─────────────────┬──────────────────┘      │                          ▼                                                                  │
+                          │                      │      ┌─────────────────────────────────────────────┐
+  │                       ▼                         │   │find unprocessed point                       │                                           │
+        ┌────────────────────────────────────┐   │      │                                             │
+  │     │        # moving detection #        │      │   │1. scan the image_flag to find unprocessed   │                                           │
+        │          1. detect moving          │   │      │point                                        │
+  │     │         2. detect rolling          │      │   │2. put the first unprocessed point to the end│                                           │
+        └─────────────────┬──────────────────┘   │      │of waiting_point                             │◀─────────────┐
+  │                       │                         │   │3. current_area ++                           │              │                            │
+                          ▼                      │      │4. push back 1 to the area_size              │              │
+  │     ┌────────────────────────────────────┐      │   │4. if couldn't find unprocessed point, set   │              │                            │
+        │              # mark #              │   │      │the processed as 1                           │              │
+  │     │   1. mark the moving area in the   │      │   └──────────────────────┬──────────────────────┘              │                            │
+        │        picture and present         │   │                             │                                     │
+  │     │2. replace the area_before list with│      │                          │                                     │                            │
+        │          area_after list           │   │                             ▼                                     │
+  │     └────────────────────────────────────┘      │               ┌─────────────────────┐                          │                            │
+                                                 │                  │if the processed is 1├───────────────────┐      │
+  │                                                 │               └──────────┬──────────┘                   │      │                            │
+                                                 │                             │                              │      │
+  │                                                 │                        false                            │      │                            │
+                                                 │                             │                              │      │
+  │                                                 │                          ▼                              │      │                            │
+                                                 │      ┌─────────────────────────────────────────────┐       │      │
+  │                                                 │   │area grow                                    │     true     │                            │
+                                                 │      │                                             │       │      │
+  │                                                 │   │1. judge the points' similarity around the   │       │      │                            │
+                                                 │      │current point                                │       │      │
+  │                                                 │   │2. put the similar point to the end of the   │       │      │                            │
+   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘      │waiting_points and set the point in the      │       │      │
+                                                    │   │image_flag as processed                      ├───────┼──────┘                            │
+                                                        │3. refresh the area_size                     │       │
+                                                    │   │4. get a point from the end of               │       │                                   │
+                                                        │waiting_points, assign the value to the      │       │
+                                                    │   │current point                                │       │                                   │
+                                                        │5. repeat the above steps until the          │       │
+                                                    │   │waiting_points is empty                      │       │                                   │
+                                                        └─────────────────────────────────────────────┘       │
+                                                    │                                                         │                                   │
+                                                                                                              │
+                                                    │                     ┌──────────┐                        │                                   │
+                                                                          │  finish  │◀───────────────────────┘
+                                                    │                     └──────────┘                                                            │
+                                                     ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+
+
+
+  ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
+                              $ area_proc $
+  │                            ╔═════════╗                            │
+                               ║  start  ║
+  │                            ╚════╦════╝                            │
+                                    │
+  │                                 │                                 │
+                                    ▼
+  │               ┌───────────────────────────────────┐               │
+                  │         1. get the image          │
+  │               │    2. initialize the area list    │               │
+                  │      3. process every point       │
+  │               │ 4. process some parameters of the │               │
+                  │               area                │
+  │               │       5. normalize the area       │               │
+                  │     6. set area_paired_flag 0     │
+  │               └─────────────────┬─────────────────┘               │
+                                    │
+  │                                 │                                 │
+                                    ▼
+  │                            ╔═════════╗                            │
+                               ║ finish  ║
+  │                            ╚═════════╝                            │
+   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+*/
