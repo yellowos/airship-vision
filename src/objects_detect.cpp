@@ -221,7 +221,7 @@ int area_proc(Mat& image_src, Mat& image_flag, vector<struct area>& area_list){
 
 
 int display_the_area_list(vector<struct area> &area_list){
-    for(auto area_it : area_list){
+    /*for(auto area_it : area_list){
         printf("#-------------------------\n");
         printf("area_flag:%d\n", area_it.area_flag);
         printf("area_num:%d\n", area_it.area_num);
@@ -233,7 +233,7 @@ int display_the_area_list(vector<struct area> &area_list){
         printf("area_RD:(%d, %d)\n", area_it.area_RD.x, area_it.area_RD.y);
         printf("area_location:(%d, %d)\n", area_it.area_location.x, area_it.area_location.y);
         printf("#-------------------------\n\n\n");
-    }
+    }*/
     return 0;
 }
 

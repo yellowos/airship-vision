@@ -25,8 +25,9 @@ int main() {
 
 
     VideoCapture cap("/Users/yellowos/Desktop/MOV_0088.mp4");
+//    VideoCapture cap("/Users/yellowos/Desktop/intel杯/detection/TB.mp4");
 //    VideoCapture cap(0);
-    cap.set(CV_CAP_PROP_EXPOSURE, 0);
+//    cap.set(CV_CAP_PROP_EXPOSURE, -3);
     if(cap.isOpened()){
         cout << "video capture is opened" << endl;
         cap >> frame_pre;
@@ -188,7 +189,7 @@ int main() {
 //        dft_analys(&processed_frame, &frame_gray);
 //        imshow("back ground",  processed_frame);
 //        imshow("disp", frame_disp);
-        waitKey(50);
+        waitKey(100);
         frame_pre = frame.clone();
         frame_pre_gray = frame_gray.clone();
 
