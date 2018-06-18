@@ -1,0 +1,3 @@
+/Users/yellowos/CLionProjects/flyfly_image_trans/service/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/yellowos/CLionProjects/flyfly_image_trans/service/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/yellowos/CLionProjects/flyfly_image_trans/service/cmake-build-debug/CMakeFiles/service.dir

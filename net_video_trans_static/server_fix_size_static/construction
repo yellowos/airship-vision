@@ -1,0 +1,6 @@
+this file describe the construction of the program
+
+1. using opencv to read a image
+2. initialize a share memory
+3. then write the image to the share memory
+4. then using a socket push the data in the share memory to the service

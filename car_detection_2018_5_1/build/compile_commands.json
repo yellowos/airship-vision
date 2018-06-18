@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/Users/yellowos/CLionProjects/car_detection_2018_5_1/build",
+  "command": "/usr/bin/clang++   -isystem /usr/local/include -isystem /usr/local/include/opencv  -g   -std=gnu++11 -o CMakeFiles/car_detection_2018_5_1.dir/main.cpp.o -c /Users/yellowos/CLionProjects/car_detection_2018_5_1/main.cpp",
+  "file": "/Users/yellowos/CLionProjects/car_detection_2018_5_1/main.cpp"
+},
+{
+  "directory": "/Users/yellowos/CLionProjects/car_detection_2018_5_1/build",
+  "command": "/usr/bin/clang++   -isystem /usr/local/include -isystem /usr/local/include/opencv  -g   -std=gnu++11 -o CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.o -c /Users/yellowos/CLionProjects/car_detection_2018_5_1/src/car_detection.cpp",
+  "file": "/Users/yellowos/CLionProjects/car_detection_2018_5_1/src/car_detection.cpp"
+},
+{
+  "directory": "/Users/yellowos/CLionProjects/car_detection_2018_5_1/build",
+  "command": "/usr/bin/clang++   -isystem /usr/local/include -isystem /usr/local/include/opencv  -g   -std=gnu++11 -o CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.o -c /Users/yellowos/CLionProjects/car_detection_2018_5_1/src/road_detection.cpp",
+  "file": "/Users/yellowos/CLionProjects/car_detection_2018_5_1/src/road_detection.cpp"
+}
+]
