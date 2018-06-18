@@ -74,162 +74,169 @@ int road_detection(cv::Mat input_source, int move_step, cv::Mat* output_source, 
             }
         }
     }
-
-    for (auto road_part_itr = road_parts.begin(); (road_part_itr + 1) != road_parts.end(); road_part_itr++) {
-        decltype(road_part_itr) road_part_itr_2;
-        for (road_part_itr_2 = (road_part_itr + 1); road_part_itr_2 != road_parts.end(); road_part_itr_2++) {
-            double similarity = 1 - abs(static_cast<double>(road_part_itr->rect_road.angle) - static_cast<double>(road_part_itr_2->rect_road.angle)) / 180.0;
-            road_part_itr->phi_similarity_sum += similarity;
-            road_part_itr->phi_similaritys.push_back(similarity);
-            road_part_itr_2->phi_similarity_sum += similarity;
-            road_part_itr_2->phi_similaritys.push_back(similarity);
-        }
-    }
-
-    cv::RotatedRect road_main_rect;
-    std::vector<road_part> main_road_parts;
-    {
-        double phi = road_parts[0].rect_road.angle;
-        double max_similarity = road_parts[0].phi_similarity_sum;
-        int64 index;
-        for (auto road_part_itr = road_parts.begin(); road_part_itr != road_parts.end(); road_part_itr++) {
-            if (road_part_itr->phi_similarity_sum > max_similarity) {
-                phi = road_part_itr->rect_road.angle;
-                index = road_part_itr - road_parts.begin();
-                max_similarity = road_part_itr->phi_similarity_sum;
+    if (road_parts.size() >= 2) {
+        for (auto road_part_itr = road_parts.begin(); (road_part_itr + 1) != road_parts.end(); road_part_itr++) {
+            decltype(road_part_itr) road_part_itr_2;
+            for (road_part_itr_2 = (road_part_itr + 1); road_part_itr_2 != road_parts.end(); road_part_itr_2++) {
+                double similarity = 1 - abs(static_cast<double>(road_part_itr->rect_road.angle) -
+                                            static_cast<double>(road_part_itr_2->rect_road.angle)) / 180.0;
+                road_part_itr->phi_similarity_sum += similarity;
+                road_part_itr->phi_similaritys.push_back(similarity);
+                road_part_itr_2->phi_similarity_sum += similarity;
+                road_part_itr_2->phi_similaritys.push_back(similarity);
             }
         }
 
-        road_main_rect.angle = 0;
-
-        for (auto road_part_itr = road_parts.begin(); road_part_itr != road_parts.end(); road_part_itr++) {
-            double similarity = 1 - fabs(road_part_itr->rect_road.angle - phi) / 180;
-            if (similarity > accuracy_phi) {
-                main_road_parts.emplace_back(*road_part_itr);
-                cv::RotatedRect rect = road_part_itr->rect_road;
-                road_main_rect.angle += static_cast<float>(road_part_itr->rect_road.angle);
-                printf("center: %f, %f     size: %f, %f     phi:%f\n", rect.center.x, rect.center.y, rect.size.width,
-                       rect.size.height, rect.angle);
+        cv::RotatedRect road_main_rect;
+        std::vector<road_part> main_road_parts;
+        {
+            double phi = road_parts[0].rect_road.angle;
+            double max_similarity = road_parts[0].phi_similarity_sum;
+            int64 index;
+            for (auto road_part_itr = road_parts.begin(); road_part_itr != road_parts.end(); road_part_itr++) {
+                if (road_part_itr->phi_similarity_sum > max_similarity) {
+                    phi = road_part_itr->rect_road.angle;
+                    index = road_part_itr - road_parts.begin();
+                    max_similarity = road_part_itr->phi_similarity_sum;
+                }
             }
+
+            road_main_rect.angle = 0;
+
+            for (auto road_part_itr = road_parts.begin(); road_part_itr != road_parts.end(); road_part_itr++) {
+                double similarity = 1 - fabs(road_part_itr->rect_road.angle - phi) / 180;
+                if (similarity > accuracy_phi) {
+                    main_road_parts.emplace_back(*road_part_itr);
+                    cv::RotatedRect rect = road_part_itr->rect_road;
+                    road_main_rect.angle += static_cast<float>(road_part_itr->rect_road.angle);
+                    printf("center: %f, %f     size: %f, %f     phi:%f\n", rect.center.x, rect.center.y,
+                           rect.size.width,
+                           rect.size.height, rect.angle);
+                }
+            }
+
+            road_main_rect.angle /= main_road_parts.size();
         }
 
-        road_main_rect.angle /= main_road_parts.size();
-    }
+        float x_min_max[2];
+        x_min_max[0] = operation_mat.cols;
+        x_min_max[1] = 0;
+        float y_min_max[2];
+        y_min_max[0] = operation_mat.rows;
+        y_min_max[1] = 0;
 
-    float x_min_max[2];
-    x_min_max[0] = operation_mat.cols;
-    x_min_max[1] = 0;
-    float y_min_max[2];
-    y_min_max[0] = operation_mat.rows;
-    y_min_max[1] = 0;
-
-    {
-        std::vector<float> y_b;
-        std::vector<float> x_b;
-        for (auto main_road_part_itr = main_road_parts.begin();
-             main_road_part_itr != main_road_parts.end();
-             main_road_part_itr++) {
-            float y_temp = main_road_part_itr->rect_road.center.y +
-                           main_road_part_itr->rect_road.center.x *
+        {
+            std::vector<float> y_b;
+            std::vector<float> x_b;
+            for (auto main_road_part_itr = main_road_parts.begin();
+                 main_road_part_itr != main_road_parts.end();
+                 main_road_part_itr++) {
+                float y_temp = main_road_part_itr->rect_road.center.y +
+                               main_road_part_itr->rect_road.center.x *
                                tan(-1 * main_road_part_itr->rect_road.angle / 180.0 * PI);
-            y_b.emplace_back(y_temp -
-                             main_road_part_itr->rect_road.size.height / 2 / cos(-1 * main_road_part_itr->rect_road.angle / 180 * PI));
-            y_b.emplace_back(y_temp +
-                             main_road_part_itr->rect_road.size.height / 2 / cos(-1 * main_road_part_itr->rect_road.angle / 180 * PI));
+                y_b.emplace_back(y_temp -
+                                 main_road_part_itr->rect_road.size.height / 2 /
+                                 cos(-1 * main_road_part_itr->rect_road.angle / 180 * PI));
+                y_b.emplace_back(y_temp +
+                                 main_road_part_itr->rect_road.size.height / 2 /
+                                 cos(-1 * main_road_part_itr->rect_road.angle / 180 * PI));
 
-            float x_temp = main_road_part_itr->rect_road.center.x +
-                           main_road_part_itr->rect_road.center.y *
+                float x_temp = main_road_part_itr->rect_road.center.x +
+                               main_road_part_itr->rect_road.center.y *
                                tan((main_road_part_itr->rect_road.angle) / 180.0 * PI);
-            x_b.emplace_back(x_temp -
-                             main_road_part_itr->rect_road.size.width / 2 / cos((-1 * main_road_part_itr->rect_road.angle) / 180 * PI));
-            x_b.emplace_back(x_temp +
-                             main_road_part_itr->rect_road.size.width / 2 / cos((-1 * main_road_part_itr->rect_road.angle) / 180 * PI));
+                x_b.emplace_back(x_temp -
+                                 main_road_part_itr->rect_road.size.width / 2 /
+                                 cos((-1 * main_road_part_itr->rect_road.angle) / 180 * PI));
+                x_b.emplace_back(x_temp +
+                                 main_road_part_itr->rect_road.size.width / 2 /
+                                 cos((-1 * main_road_part_itr->rect_road.angle) / 180 * PI));
 
-            //            get_road_w_h(x_min_max, y_min_max, main_road_part_itr->rect_road);
+                //            get_road_w_h(x_min_max, y_min_max, main_road_part_itr->rect_road);
+            }
+
+            std::sort(y_b.begin(), y_b.end());
+            std::sort(x_b.begin(), x_b.end());
+
+            auto x_b_itr = x_b.begin();
+            x_min_max[0] = (*x_b_itr);
+            x_b_itr = x_b.end();
+            x_b_itr--;
+            x_min_max[1] = (*x_b_itr);
+
+            auto y_b_itr = y_b.begin();
+            y_min_max[0] = (*y_b_itr);
+            y_b_itr = y_b.end();
+            y_b_itr--;
+            y_min_max[1] = (*y_b_itr);
         }
 
-        std::sort(y_b.begin(), y_b.end());
-        std::sort(x_b.begin(), x_b.end());
-
-        auto x_b_itr = x_b.begin();
-        x_min_max[0] = (*x_b_itr);
-        x_b_itr = x_b.end();
-        x_b_itr--;
-        x_min_max[1] = (*x_b_itr);
-
-        auto y_b_itr = y_b.begin();
-        y_min_max[0] = (*y_b_itr);
-        y_b_itr = y_b.end();
-        y_b_itr--;
-        y_min_max[1] = (*y_b_itr);
-    }
-
-    {
-        float x_temp = (x_min_max[0] + x_min_max[1]) / 2;
-        float y_temp = (y_min_max[0] + y_min_max[1]) / 2;
-        float y_tan = y_temp / tan(-1 * road_main_rect.angle / 180 * PI);
-        float point_x = y_tan - (y_tan - x_temp) * (cos(-2 * road_main_rect.angle / 180 * PI) + 1) / 2;
-        float point_y = (y_tan - x_temp) * sin(-2 * road_main_rect.angle / 180 * PI) / 2;
-        road_main_rect.center = cv::Point2f(point_x, point_y);
-    }
-
-    float dx = x_min_max[1] - x_min_max[0];
-    float dy = y_min_max[1] - y_min_max[0];
-    double theta = -1 * road_main_rect.angle / 180 * PI;
-    road_main_rect.size.width = static_cast<float>(dx * cos(theta));
-    road_main_rect.size.height = static_cast<float>(dy * cos(theta));
-    /*double theta = road_main_rect.angle/180*PI;
-    double m = (1 - (tan(theta)) * (tan(theta))) * cos(theta);
-    road_main_rect.size.width = (float)((dx - dy*tan(theta)) / m);
-    road_main_rect.size.height = (float)((dy - dx*tan(theta)) / m);*/
-
-    {
-        cv::Point2f points[4];
-        road_main_rect.points(points);
-        printf("finish rect center:%f, %f    size:%f, %f    phi %f",
-               road_main_rect.center.x,
-               road_main_rect.center.y,
-               road_main_rect.size.width,
-               road_main_rect.size.height,
-               road_main_rect.angle);
-
-        for (int i = 0; i < 4; i++) {
-            cv::line(input_source, points[i], points[(i + 1) % 4], cv::Scalar(255));
+        {
+            float x_temp = (x_min_max[0] + x_min_max[1]) / 2;
+            float y_temp = (y_min_max[0] + y_min_max[1]) / 2;
+            float y_tan = y_temp / tan(-1 * road_main_rect.angle / 180 * PI);
+            float point_x = y_tan - (y_tan - x_temp) * (cos(-2 * road_main_rect.angle / 180 * PI) + 1) / 2;
+            float point_y = (y_tan - x_temp) * sin(-2 * road_main_rect.angle / 180 * PI) / 2;
+            road_main_rect.center = cv::Point2f(point_x, point_y);
         }
-    }
 
-    //    cv::cvtColor(operation_mat, operation_mat, CV_RGB2GRAY);
-    //    cv::threshold(operation_mat, operation_mat, 128, 255, CV_THRESH_BINARY);
-    //    cv::medianBlur(operation_mat, operation_mat, CELL_SIZE);
-    //    cv::dilate(operation_mat, operation_mat, cv::getStructuringElement(cv::MORPH_RECT, cv::Size(CELL_SIZE*2, CELL_SIZE*2)));
+        float dx = x_min_max[1] - x_min_max[0];
+        float dy = y_min_max[1] - y_min_max[0];
+        double theta = -1 * road_main_rect.angle / 180 * PI;
+        road_main_rect.size.width = static_cast<float>(dx * cos(theta));
+        road_main_rect.size.height = static_cast<float>(dy * cos(theta));
+        /*double theta = road_main_rect.angle/180*PI;
+        double m = (1 - (tan(theta)) * (tan(theta))) * cos(theta);
+        road_main_rect.size.width = (float)((dx - dy*tan(theta)) / m);
+        road_main_rect.size.height = (float)((dy - dx*tan(theta)) / m);*/
 
-    cv::Mat road_mat;
-    {
-        road_mat = cv::Mat::zeros(road_main_rect.size, CV_8UC3);
-        cv::Point2f img_points[4];
-        cv::Point2f warp_points[4];
+        {
+            cv::Point2f points[4];
+            road_main_rect.points(points);
+            printf("finish rect center:%f, %f    size:%f, %f    phi %f",
+                   road_main_rect.center.x,
+                   road_main_rect.center.y,
+                   road_main_rect.size.width,
+                   road_main_rect.size.height,
+                   road_main_rect.angle);
 
-        warp_points[0] = cv::Point(0, 0);
-        warp_points[1] = cv::Point(0, road_mat.rows);
-        warp_points[2] = cv::Point(road_mat.cols, 0);
-        warp_points[3] = cv::Point(road_mat.cols, road_mat.rows);
+            for (int i = 0; i < 4; i++) {
+                cv::line(input_source, points[i], points[(i + 1) % 4], cv::Scalar(255));
+            }
+        }
 
-        cv::Point2f vec[4];
-        road_main_rect.points(vec);
+        //    cv::cvtColor(operation_mat, operation_mat, CV_RGB2GRAY);
+        //    cv::threshold(operation_mat, operation_mat, 128, 255, CV_THRESH_BINARY);
+        //    cv::medianBlur(operation_mat, operation_mat, CELL_SIZE);
+        //    cv::dilate(operation_mat, operation_mat, cv::getStructuringElement(cv::MORPH_RECT, cv::Size(CELL_SIZE*2, CELL_SIZE*2)));
 
-        img_points[1] = vec[0];
-        img_points[0] = vec[1];
-        img_points[2] = vec[2];
-        img_points[3] = vec[3];
+        cv::Mat road_mat;
+        {
+            road_mat = cv::Mat::zeros(road_main_rect.size, CV_8UC3);
+            cv::Point2f img_points[4];
+            cv::Point2f warp_points[4];
 
-        cv::Mat transMat = getPerspectiveTransform(img_points, warp_points);
+            warp_points[0] = cv::Point(0, 0);
+            warp_points[1] = cv::Point(0, road_mat.rows);
+            warp_points[2] = cv::Point(road_mat.cols, 0);
+            warp_points[3] = cv::Point(road_mat.cols, road_mat.rows);
 
-        warpPerspective(input_source, road_mat, transMat, road_mat.size());
+            cv::Point2f vec[4];
+            road_main_rect.points(vec);
+
+            img_points[1] = vec[0];
+            img_points[0] = vec[1];
+            img_points[2] = vec[2];
+            img_points[3] = vec[3];
+
+            cv::Mat transMat = getPerspectiveTransform(img_points, warp_points);
+
+            warpPerspective(input_source, road_mat, transMat, road_mat.size());
+        }
+        cv::imshow("road", road_mat);
+        //    cv::imshow("image", operation_mat);
+        *output_source = road_mat;
     }
     cv::imshow("source", input_source);
-    cv::imshow("road", road_mat);
-    //    cv::imshow("image", operation_mat);
-    *output_source = road_mat;
     cv::waitKey(10);
     printf("\n\n\n");
 

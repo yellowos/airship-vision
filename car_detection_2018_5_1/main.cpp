@@ -6,7 +6,7 @@
 #include "./lib/road_detection.h"
 
 int main() {
-    cv::VideoCapture video("/Users/yellowos/Desktop/intel?/video/video2.mp4");
+    cv::VideoCapture video(0);
     while (true) {
         cv::Mat image;
         video >> image;

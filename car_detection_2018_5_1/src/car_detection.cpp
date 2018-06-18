@@ -31,7 +31,7 @@ int car_detection(Mat image, vector<RotatedRect> &rects){
     //drawContours(image, contours, -1, Scalar(255, 255, 255));
     vector<RotatedRect> rects_temp;
 
-    Ptr<SVM>svm = SVM::load("/Users/yellowos/CLionProjects/HOG_SVM_train/svm.xml");
+    Ptr<SVM>svm = SVM::load("/Users/yellowos/Desktop/projects/intel杯/airship-vision/HOG_SVM_train/svm.xml");
     HOGDescriptor hog(Size(64, 64), Size(16, 16), Size(8, 8), Size(8, 8), 3);
 
     for(auto point_list_itr = contours.begin(); point_list_itr != contours.end(); point_list_itr++){

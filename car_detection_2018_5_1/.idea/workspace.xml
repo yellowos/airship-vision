@@ -35,33 +35,21 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="150">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="car_detection.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="car_detection.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/car_detection.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
+            <state relative-caret-position="289">
               <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
               <folding>
                 <element signature="e#45#78#0" expanded="true" />
                 <element signature="e#3772#3791#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-            <state split_layout="SPLIT">
-              <first_editor />
-              <second_editor>
-                <js_state />
-              </second_editor>
             </state>
           </provider>
         </entry>
@@ -75,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="road_detection.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="road_detection.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/road_detection.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="2496">
+              <caret line="237" column="5" lean-forward="true" selection-start-line="237" selection-start-column="5" selection-end-line="237" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -102,12 +90,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/lib/road_detection.h" />
-        <option value="$PROJECT_DIR$/src/road_detection.cpp" />
         <option value="$PROJECT_DIR$/lib/car_detection.h" />
         <option value="$PROJECT_DIR$/lib/ctrl_flag.h" />
-        <option value="$PROJECT_DIR$/src/car_detection.cpp" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/src/car_detection.cpp" />
+        <option value="$PROJECT_DIR$/src/road_detection.cpp" />
       </list>
     </option>
   </component>
@@ -204,12 +192,12 @@
       <workItem from="1526815223515" duration="2962000" />
       <workItem from="1529224206063" duration="1150000" />
       <workItem from="1529303727926" duration="1263000" />
-      <workItem from="1529314551886" duration="315000" />
+      <workItem from="1529314551886" duration="2953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63896000" />
+    <option name="totallyTimeSpent" value="66534000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -224,22 +212,22 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19661734" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19661734" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49930555" weight="0.319202" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.43125" weight="0.32917705" />
       <window_info anchor="bottom" id="CMake" order="7" sideWeight="0.49964765" weight="0.32917705" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50069445" side_tool="true" weight="0.32" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.43410853" weight="0.33790523" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.43410853" visible="true" weight="0.33790523" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Serial Monitor" order="7" weight="0.32917705" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32917705" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49722221" weight="0.3990025" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49722221" weight="0.34912717" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.43125" weight="0.32917705" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -610,13 +598,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/road_detection.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
@@ -634,21 +615,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/car_detection.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
+        <state relative-caret-position="289">
           <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
           <folding>
             <element signature="e#45#78#0" expanded="true" />
             <element signature="e#3772#3791#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/road_detection.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2496">
+          <caret line="237" column="5" lean-forward="true" selection-start-line="237" selection-start-column="5" selection-end-line="237" selection-end-column="5" />
         </state>
       </provider>
     </entry>
