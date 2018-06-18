@@ -1,3 +1,0 @@
-/Users/yellowos/CLionProjects/HOG_SVM_train/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/yellowos/CLionProjects/HOG_SVM_train/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/yellowos/CLionProjects/HOG_SVM_train/cmake-build-debug/CMakeFiles/HOG_SVM_train.dir
