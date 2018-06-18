@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/yellowos/CLionProjects/car_detection_2018_5_1
+CMAKE_SOURCE_DIR = /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/car_detection_2018_5_1.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/car_detection_2018_5_1.dir/flags.make
 
 CMakeFiles/car_detection_2018_5_1.dir/main.cpp.o: CMakeFiles/car_detection_2018_5_1.dir/flags.make
 CMakeFiles/car_detection_2018_5_1.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/car_detection_2018_5_1.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/car_detection_2018_5_1.dir/main.cpp.o -c /Users/yellowos/CLionProjects/car_detection_2018_5_1/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/car_detection_2018_5_1.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/car_detection_2018_5_1.dir/main.cpp.o -c /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/main.cpp
 
 CMakeFiles/car_detection_2018_5_1.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/car_detection_2018_5_1.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yellowos/CLionProjects/car_detection_2018_5_1/main.cpp > CMakeFiles/car_detection_2018_5_1.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/main.cpp > CMakeFiles/car_detection_2018_5_1.dir/main.cpp.i
 
 CMakeFiles/car_detection_2018_5_1.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/car_detection_2018_5_1.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yellowos/CLionProjects/car_detection_2018_5_1/main.cpp -o CMakeFiles/car_detection_2018_5_1.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/main.cpp -o CMakeFiles/car_detection_2018_5_1.dir/main.cpp.s
 
 CMakeFiles/car_detection_2018_5_1.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/car_detection_2018_5_1.dir/main.cpp.o.provides.build: CMakeFiles/car_
 
 CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.o: CMakeFiles/car_detection_2018_5_1.dir/flags.make
 CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.o: ../src/car_detection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.o -c /Users/yellowos/CLionProjects/car_detection_2018_5_1/src/car_detection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.o -c /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/src/car_detection.cpp
 
 CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yellowos/CLionProjects/car_detection_2018_5_1/src/car_detection.cpp > CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/src/car_detection.cpp > CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.i
 
 CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yellowos/CLionProjects/car_detection_2018_5_1/src/car_detection.cpp -o CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/src/car_detection.cpp -o CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.s
 
 CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/car_detection_2018_5_1.dir/src/car_detection.cpp.o.provides.build: CM
 
 CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.o: CMakeFiles/car_detection_2018_5_1.dir/flags.make
 CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.o: ../src/road_detection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.o -c /Users/yellowos/CLionProjects/car_detection_2018_5_1/src/road_detection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.o -c /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/src/road_detection.cpp
 
 CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yellowos/CLionProjects/car_detection_2018_5_1/src/road_detection.cpp > CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/src/road_detection.cpp > CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.i
 
 CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yellowos/CLionProjects/car_detection_2018_5_1/src/road_detection.cpp -o CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/src/road_detection.cpp -o CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.s
 
 CMakeFiles/car_detection_2018_5_1.dir/src/road_detection.cpp.o.requires:
 
@@ -156,7 +156,7 @@ car_detection_2018_5_1: /usr/local/lib/libopencv_flann.3.3.0.dylib
 car_detection_2018_5_1: /usr/local/lib/libopencv_imgproc.3.3.0.dylib
 car_detection_2018_5_1: /usr/local/lib/libopencv_core.3.3.0.dylib
 car_detection_2018_5_1: CMakeFiles/car_detection_2018_5_1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable car_detection_2018_5_1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable car_detection_2018_5_1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/car_detection_2018_5_1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -175,6 +175,6 @@ CMakeFiles/car_detection_2018_5_1.dir/clean:
 .PHONY : CMakeFiles/car_detection_2018_5_1.dir/clean
 
 CMakeFiles/car_detection_2018_5_1.dir/depend:
-	cd /Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/yellowos/CLionProjects/car_detection_2018_5_1 /Users/yellowos/CLionProjects/car_detection_2018_5_1 /Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug /Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug /Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug/CMakeFiles/car_detection_2018_5_1.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1 /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1 /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug/CMakeFiles/car_detection_2018_5_1.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/car_detection_2018_5_1.dir/depend
 

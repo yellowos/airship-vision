@@ -1,4 +1,4 @@
-# Install script for directory: /Users/yellowos/CLionProjects/car_detection_2018_5_1
+# Install script for directory: /Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

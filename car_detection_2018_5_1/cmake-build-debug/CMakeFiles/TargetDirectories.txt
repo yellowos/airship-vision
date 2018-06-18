@@ -1,3 +1,3 @@
-/Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/yellowos/CLionProjects/car_detection_2018_5_1/cmake-build-debug/CMakeFiles/car_detection_2018_5_1.dir
+/Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/yellowos/Desktop/projects/intel杯/airship-vision/car_detection_2018_5_1/cmake-build-debug/CMakeFiles/car_detection_2018_5_1.dir
