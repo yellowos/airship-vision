@@ -6,11 +6,11 @@
 #include "./lib/road_detection.h"
 
 int main() {
-    cv::VideoCapture video(0);
+    cv::VideoCapture video(1);
     while (true) {
         cv::Mat image;
         video >> image;
-
+        cv::imshow("hhhhhh", image);
         vector<cv::RotatedRect> rects;
         road_detection(image, 3, &image, 0.97);
         car_detection(image, rects);
